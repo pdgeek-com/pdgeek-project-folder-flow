@@ -1,0 +1,13 @@
+{
+  "packageVersion": "1.0.0.0",
+  "creator": "PD Geek Automations",
+  "sourceEnvironment": "Default-PDGeek",
+  "flows": [
+    {
+      "name": "Create_Project_Folder_Structure",
+      "displayName": "Create Project Folder Structure",
+      "description": "Automatically create project folder structure in SharePoint for new projects.",
+      "definition": "definition.json"
+    }
+  ]
+}
