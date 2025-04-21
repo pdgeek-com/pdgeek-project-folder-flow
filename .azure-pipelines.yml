@@ -7,20 +7,23 @@ pool:
   vmImage: windows-latest
 
 variables:
-  solutionName: 'pdgeek-project-folder-flow'
-  environment: 'Default'
-  publisherName: 'PD Geek'
+  environmentUrl: 'https://pdgeek.crm.dynamics.com'
+  clientId: '7d492969-4929-4440-a7a9-2a46a377e464'
+  clientSecret: $(CLIENT_SECRET)
+  tenantId: '935b06c0-ed5f-4d24-aeb8-517e8372d700'
 
 steps:
-- task: PowerPlatformToolInstaller@0
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- script: |
+    dotnet tool install --global Microsoft.PowerApps.CLI.Tool
   displayName: 'Install Power Platform CLI'
 
-- task: PowerPlatformImportSolution@0
-  displayName: 'Import Power Automate Solution from Git'
-  inputs:
-    authenticatorType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'powerplatform-dev'
-    SolutionInputFile: '$(Build.SourcesDirectory)/definition.json'
-    Environment: '$(environment)'
-    OverwriteUnmanagedCustomizations: true
-    PublishWorkflows: true
+- script: |
+    pac auth create --url $(environmentUrl) --clientId $(clientId) --clientSecret $(clientSecret) --tenantId $(tenantId)
+    pac solution import --path ./definition.json --overwrite --publish-changes
+  displayName: 'Authenticate and Import Power Platform Solution'
