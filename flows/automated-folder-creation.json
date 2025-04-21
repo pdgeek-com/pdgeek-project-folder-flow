@@ -1,0 +1,16 @@
+{
+  "name": "AutomatedFolderCreation",
+  "trigger": "Dataverse: When a row is added to ProjectTracker",
+  "actions": [
+    "Create folder: /Projects/{Title}",
+    "Create subfolder: Proposals",
+    "Create subfolder: Contracts",
+    "Create subfolder: Subcontractors",
+    "Create subfolder: Subcontractors/Across Industries",
+    "Create subfolder: Subcontractors/C-J Systems",
+    "Create subfolder: Invoices",
+    "Create subfolder: Photos & As-Builts",
+    "Create subfolder: Closeout Docs"
+  ],
+  "notification": "Send Teams or Email confirmation"
+}

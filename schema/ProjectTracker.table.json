@@ -1,0 +1,51 @@
+{
+  "name": "ProjectTracker",
+  "displayName": "Project Tracker",
+  "description": "Tracks AV and MSP projects for PD Geek",
+  "fields": [
+    {
+      "name": "Title",
+      "type": "Text",
+      "isPrimary": true
+    },
+    {
+      "name": "Client",
+      "type": "Text"
+    },
+    {
+      "name": "Status",
+      "type": "Choice",
+      "choices": [
+        "Planning",
+        "Active",
+        "Completed",
+        "On Hold",
+        "Cancelled"
+      ]
+    },
+    {
+      "name": "KickoffDate",
+      "type": "DateOnly"
+    },
+    {
+      "name": "SubcontractorAssigned",
+      "type": "Text"
+    },
+    {
+      "name": "EstimatedLabor",
+      "type": "Number"
+    },
+    {
+      "name": "PermitsRequired",
+      "type": "Boolean"
+    },
+    {
+      "name": "LinkedQuoteID",
+      "type": "Text"
+    },
+    {
+      "name": "AutoFolderCreated",
+      "type": "Boolean"
+    }
+  ]
+}
