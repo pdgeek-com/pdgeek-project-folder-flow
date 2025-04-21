@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: windows-latest
+
+variables:
+  solutionName: 'pdgeek-project-folder-flow'
+  environment: 'Default'
+  publisherName: 'PD Geek'
+
+steps:
+- task: PowerPlatformToolInstaller@0
+  displayName: 'Install Power Platform CLI'
+
+- task: PowerPlatformImportSolution@0
+  displayName: 'Import Power Automate Solution from Git'
+  inputs:
+    authenticatorType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'powerplatform-dev'
+    SolutionInputFile: '$(Build.SourcesDirectory)/definition.json'
+    Environment: '$(environment)'
+    OverwriteUnmanagedCustomizations: true
+    PublishWorkflows: true
